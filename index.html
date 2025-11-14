@@ -435,6 +435,13 @@
     opacity: 0;
     transform: translate(-50%,-88%) rotate(var(--rot)) scale(.05);
   }
+  .petal {
+    filter: none;
+  }
+
+  .petal.showShadow {
+    filter: drop-shadow(0 0 18px rgba(255,140,220,.55));
+  }
 
 </style>
 </head>
@@ -479,7 +486,9 @@
 <div id="belowHeart"></div>
 <script>
 (() => {
-
+  setTimeout(() => {
+    petals.forEach(p => p.classList.add("showShadow"));
+  }, 1600); // sau khi petalIn kết thúc
   /* ==========================
      HÀM BẮT ĐẦU MAIN SCENE
      (TRÁI TIM + CHỮ + CHỮ RƠI)
@@ -576,8 +585,10 @@
 
 
 
-  /* KHỞI ĐỘNG INTRO */
-  createLotusIntro();
+  /* KHỞI ĐỘNG INTRO SAU 2 GIÂY */
+  setTimeout(() => {
+    createLotusIntro();
+  }, 2000);
 
 
   /* ==========================
