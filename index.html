@@ -42,15 +42,25 @@
   .center{position:fixed; inset:0; display:grid; place-items:center; pointer-events:none}
   .copy{ text-align:center; padding:2rem 1rem; }
   .headline{
-    --shine1:#fff; --shine2:#ffe7f6; --shine3:#ffd2f0; --shadow: rgba(255,139,209,.35);
-    font-weight:900; letter-spacing:.6px; line-height:1.15; color:transparent;
-    font-size:clamp(24px, 5.2vw, 64px);
-    background:linear-gradient(90deg, var(--shine1), var(--shine2), var(--shine3), var(--shine1));
-    background-size:300% 100%; -webkit-background-clip:text; background-clip:text;
-    filter: drop-shadow(0 8px 30px var(--shadow));
-    opacity:0; transform:translateY(10px) scale(.98);
-    animation: headlineIn 1.2s ease forwards .2s, sheen 8s ease-in-out infinite 1.4s;
+      --shine1:#fff; --shine2:#ffe7f6; --shine3:#ffd2f0; --shadow: rgba(255,139,209,.35);
+      font-weight:1000; 
+      letter-spacing:.6px; 
+      line-height:1.15; 
+      color:transparent;
+      font-size:clamp(24px, 5.2vw, 64px);
+      background:linear-gradient(90deg, var(--shine1), var(--shine2), var(--shine3), var(--shine1));
+      background-size:300% 100%; 
+      -webkit-background-clip:text; 
+      background-clip:text;
+
+
+
+      filter: drop-shadow(0 8px 30px var(--shadow));
+      opacity:0; 
+      transform:translateY(10px) scale(.98);
+      animation: headlineIn 1.2s ease forwards .2s, sheen 8s ease-in-out infinite 1.4s;
   }
+
   @keyframes sheen{0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%}}
   @keyframes headlineIn{to{opacity:1; transform:translateY(0) scale(1)}}
 
@@ -65,52 +75,72 @@
     60%{opacity:1; transform:translateY(-4px) scale(1.04); filter:blur(0)}
     100%{opacity:1; transform:translateY(0) scale(1)}
   }
-  /* Dòng chữ dưới trái tim */
   #belowHeart{
     min-height:2.4em;
     color:#ffe9fb;
-    font-size:clamp(16px, 2.1vw, 22px);
-    font-weight:500;
-    letter-spacing:.03em;
+    font-size:clamp(15px, 2.1vw, 22px);
+    font-weight:800;
+    letter-spacing:.05em;
     text-align:center;
-    text-shadow:0 0 10px rgba(255,140,220,.85);
+
+    /* VIỀN ĐẬM CHỐNG CHÌM – chỉ cần webkit là đủ */
+    -webkit-text-stroke: 1px rgba(15, 0, 35, 0.95);
+    /* text-stroke: 1px rgba(15, 0, 35, 0.95);  <– bỏ dòng này */
+
+    paint-order: stroke fill;
+
+    text-shadow:
+      0 0 6px rgba(0,0,0,0.85),
+      0 0 14px rgba(0,0,0,0.7);
+
     opacity:0;
     transform:translateY(8px);
     transition:opacity .6s ease, transform .6s ease;
     pointer-events:none;
   }
 
+
+
   #belowHeart.show{
     opacity:1;
     transform:translateY(0);
   }
 
-  /* Chữ rơi nhỏ */
   .fallingText {
-    position: fixed;
-    top: -40px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 14px;               /* nhỏ hơn */
-    font-weight: 700;
-    pointer-events: none;
-    white-space: nowrap;
-    color: transparent;
+      position: fixed;
+      top: -40px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 20px;
+      font-weight: 1000;
+      letter-spacing: .04em;
 
-    --base-grad: linear-gradient(90deg, #ffd5f0, #ffb2e3, #ff83c5, #ffd5f0);
-    --shine-grad: linear-gradient(120deg, transparent 16%, rgba(255,255,255,.9) 46%, rgba(255,200,240,.6) 54%, transparent 84%);
-    background-image: var(--shine-grad), var(--base-grad);
-    background-size: 200% 100%, 300% 100%;
-    background-clip: text;
-    -webkit-background-clip: text;
+      /* VIỀN ĐẬM CHỐNG CHÌM – chỉ cần webkit là đủ */
+      -webkit-text-stroke: 2px #ff83c5(15, 0, 35, 0.95);
+      /* text-stroke: 1px rgba(15, 0, 35, 0.95);  <– bỏ dòng này */
+      paint-order: stroke fill;
 
-    animation: fall linear forwards, shineSweep 3.6s linear infinite;
+
+
+      pointer-events: none;
+      white-space: nowrap;
+      color: transparent;
+
+      --base-grad: linear-gradient(90deg, #ffd5f0, #ffb2e3, #ff83c5, #ffd5f0);
+      --shine-grad: linear-gradient(120deg, transparent 16%, rgba(255,255,255,.9) 46%, rgba(255,200,240,.6) 54%, transparent 84%);
+      background-image: var(--shine-grad), var(--base-grad);
+      background-size: 200% 100%, 300% 100%;
+      background-clip: text;
+      -webkit-background-clip: text;
+
+      animation: fall linear forwards, shineSweep 3.6s linear infinite;
   }
+
 
   /* Mobile: chữ càng nhỏ nữa cho chắc */
   @media (max-width: 600px){
     .fallingText{
-      font-size: 11px;
+      font-size: 14px;
     }
   }
 
@@ -957,17 +987,17 @@
   ========================== */
 
   const lines = [
-    "Chúc cô một ngày 20/11 thật ý nghĩa và tràn ngập niềm vui.",
-    "Kính chúc cô luôn bình an, niềm vui và may mắn tràn ngập mỗi ngày.",
-    "Chúc cô luôn vui vẻ và hạnh phúc",
-    "Kính chúc cô luôn giữ vững ngọn lửa nhiệt huyết.",
+    "Chúc cô 20/11 thật ý nghĩa và tràn ngập niềm vui.",
+    "Chúc cô luôn bình an và may mắn.",
+    "Kính chúc cô thật nhiều niềm vui và hạnh phúc.",
+    "Mong cô luôn giữ mãi ngọn lửa nhiệt huyết.",
     "Chúc cô một ngày 20/11 thật rực rỡ ✨",
   ];
   const belowMessages = [
-    "Tập thể lớp 9/10 chúc cô 20/11 vui vẻ ❤️",
-    "Chúc cô luôn vui khỏe, mãi là ngọn đèn soi sáng tri thức cho học trò.",
-    "Chúc cô luôn khỏe mạnh, bình an và hạnh phúc 🌸",
-    "Mỗi ngày đến lớp cùng cô là một kỷ niệm 💖"
+    "Tập thể 9/10 chúc cô 20/11 thật vui vẻ ❤️",
+    "Chúc cô luôn mạnh khỏe và tràn đầy yêu thương.",
+    "Kính chúc cô bình an, hạnh phúc mỗi ngày 🌸",
+    "Mỗi ngày đến lớp cùng cô là một kỷ niệm đẹp 💖",
   ];
 
   const rain = document.getElementById("rainContainer");
