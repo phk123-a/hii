@@ -430,6 +430,22 @@
     from { filter: blur(0px);}
     to   { filter: blur(18px);}
   }
+  /* ================================
+    MOBILE: Thu nhỏ toàn bộ giao diện
+    để giống PC, giữ nguyên tỉ lệ
+  ================================ */
+  @media (max-width: 768px) {
+    body {
+      transform: scale(0.82);
+      transform-origin: top center;
+      width: 122%;
+      height: 122%;
+    }
+
+    #fx, #bgvid, .center, #rainContainer {
+      transform: scale(1.0); /* giữ canvas đúng vị trí */
+    }
+  }
 
 </style>
 </head>
@@ -450,11 +466,7 @@
     <div class="ripple r2"></div>
     <div class="ripple r3"></div>
 
-    <!-- Text intro -->
-    <div class="introTextWrap">
-      <div class="introTitle">TẬP THỂ LỚP 9/10</div>
-      <div class="introSubtitle">Kính chúc cô 20/11 thật nhiều niềm vui và hạnh phúc ✨</div>
-    </div>
+
 
     <!-- RÈM MỞ CHUYỂN CẢNH -->
     <div id="lotusCurtain"></div>
