@@ -430,6 +430,11 @@
     from { filter: blur(0px);}
     to   { filter: blur(4px);}
   }
+  .petal.no-anim {
+    animation: none !important;
+    opacity: 0;
+    transform: translate(-50%,-88%) rotate(var(--rot)) scale(.05);
+  }
 
 </style>
 </head>
@@ -514,13 +519,26 @@
     }
 
     /* ---- tạo 18 cánh hoa ---- */
+
+    const petals = [];
     for (let i = 0; i < 18; i++) {
       const p = document.createElement("div");
-      p.className = "petal";
+      p.className = "petal no-anim";
       p.style.setProperty("--rot", `${(i / 18) * 360}deg`);
-      p.style.setProperty("--delay", `${i * 0.06}s`);
       wrap.appendChild(p);
+      petals.push(p);
     }
+
+    // 1 khung hình sau mới bật animation → không lag
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        petals.forEach((p, i) => {
+          p.classList.remove("no-anim");
+          p.style.setProperty("--delay", `${i * 0.06}s`);
+        });
+      });
+    });
+
 
     /* ---- tạo spark ánh sáng bay ra ---- */
     for (let i = 0; i < 25; i++) {
