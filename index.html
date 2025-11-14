@@ -430,18 +430,6 @@
     from { filter: blur(0px);}
     to   { filter: blur(18px);}
   }
-  /* ================================
-    MOBILE: Thu nhỏ toàn bộ giao diện
-    để giống PC, giữ nguyên tỉ lệ
-  ================================ */
-
-
-  @media (max-width: 768px) {
-    #lotusIntro, .lotusGlow, .lotusAura {
-      filter: none !important;
-      box-shadow: none !important;
-    }
-  }
 
 </style>
 </head>
@@ -486,20 +474,6 @@
 <div id="belowHeart"></div>
 <script>
 (() => {
-  // Giảm mạnh số particle để đỡ lag mobile
-  const MOBILE = window.innerWidth < 768;
-
-  // Giảm số hiệu ứng khi mobile
-  if (MOBILE) {
-      // Sao giảm
-      window.STAR_COUNT = 80;
-
-      // Orbiters giảm
-      window.ORBITER_COUNT = 6;
-
-      // Particle spawn giảm 
-      window.MAX_PARTICLES = 40;
-  }
 
   /* ==========================
      HÀM BẮT ĐẦU MAIN SCENE
